@@ -4,6 +4,6 @@ This repo documents my journey for following the [Machine Learning Course](https
 You can find all my code for the programming exercises under Exercise-Solutions
 
 ## Legend
-* [Ex1](Exercise-Solutions/ex1) Linear Regression
-* [Ex2](Exercise-Solutions/ex2) Logistic Regression
+* [Ex1](Exercise-Solutions/ex1): Linear Regression
+* [Ex2](Exercise-Solutions/ex2): Logistic Regression
 
