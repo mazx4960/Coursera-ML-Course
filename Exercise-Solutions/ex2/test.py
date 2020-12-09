@@ -39,12 +39,37 @@ def plotStudentData(x, y):
 
 class TestEx2(unittest.TestCase):
     def setUp(self) -> None:
-        self.x1, self.y1 = getDataFromFile('ex2data1.txt')
+        self.x1, self.y1 = getDataFromFile('ex2data1.txt', dtype=np.float128)
         self.x2, self.y2 = getDataFromFile('ex2data2.txt')
 
     def getVisualisation(self):
         # Part 1.1
         plotStudentData(self.x1, self.y1)
+
+    def testSigmoid(self):
+        # Part 1.2.1 Sigmoid function
+        self.assertAlmostEqual(0.5, sigmoid(0))
+
+        sigmoid_mat = sigmoid(np.asarray([-10000, 0, 10000]))
+        np.testing.assert_array_almost_equal(np.asarray([0, 0.5, 1]), sigmoid_mat)
+
+    def testCostFunction(self):
+        # Part 1.2.2 Cost function and gradient
+        m, n = np.shape(self.x1)
+        x = np.c_[np.ones(m), self.x1]
+        initial_theta = np.zeros(n + 1)
+
+        cost, grad = costFunction(initial_theta, x, self.y1)
+        self.assertAlmostEqual(0.693, cost, places=3)
+        np.testing.assert_array_almost_equal(
+            np.asarray([-0.1000,  -12.0092, -11.2628]),
+            grad, decimal=4)
+
+    def testfmin(self):
+        m, n = np.shape(self.x1)
+        x = np.c_[np.ones(m), self.x1]
+        initial_theta = np.zeros((n + 1), dtype=int)
+        print(fmin(initial_theta, x, self.y1))
 
 
 def main():
@@ -54,5 +79,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # unittest.main()
-    main()
+    unittest.main()
+    # main()
