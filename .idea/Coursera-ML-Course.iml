@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Exercise-Solutions/ex2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Exercise-Solutions/ex1" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
