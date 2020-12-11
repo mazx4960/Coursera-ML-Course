@@ -1,6 +1,7 @@
 from neural_network import *
 import numpy as np
 import matplotlib.pyplot as plt
+from pylab import imshow, cm
 import scipy.io as sio
 import unittest
 import warnings
@@ -16,6 +17,21 @@ def get_mat_from_file(filename):
     return [data[key] for key in keys]
 
 
+def drawNumbers(x):
+    im_number = 200
+    imv = np.empty((20, 0))
+    imag = []
+    for i in range(im_number):
+        im = np.reshape(x[i], (20, 20)).T
+        imv = np.append(imv,im,axis=1)
+        if (i+1) % 20 == 0:
+            imag.append(imv)
+            imv = np.empty((20, 0))
+    image = np.concatenate((imag[:]), axis=0)
+    plt.imshow(image, cmap=plt.cm.Greys_r)
+    plt.show()
+
+
 ########################################################################################################################
 # Test Code
 ########################################################################################################################
@@ -24,6 +40,11 @@ class TestEx3(unittest.TestCase):
     def setUp(self) -> None:
         self.x1, self.y1 = get_mat_from_file('ex3data1.mat')
         self.theta1, self.theta2 = get_mat_from_file('ex3weights.mat')
+
+    def visualizeData(self):
+        data = np.copy(self.x1)
+        np.random.shuffle(data)
+        drawNumbers(data)
 
     def testlrCostFunction(self):
         theta_t = np.array([-2, -1, 1, 2])
@@ -51,7 +72,7 @@ class TestEx3(unittest.TestCase):
 def main():
     test = TestEx3()
     test.setUp()
-    test.testFeedForward()
+    test.visualizeData()
 
 
 if __name__ == '__main__':
