@@ -112,6 +112,8 @@ def costFunctionReg(theta, x, y, lam):
 def getGradReg(theta, x, y, lam):
     m, n = np.shape(x)
     theta = theta.reshape((n, 1))
-    grad = getGrad(theta, x, y).reshape((n, 1)) + (lam / m) * theta
+    reg_term = (lam / m) * theta
+    mask = np.diag(np.append([0], np.ones((n - 1))))
+    grad = getGrad(theta, x, y).reshape((n, 1)) + np.matmul(mask, reg_term)
     return grad.flatten()
 

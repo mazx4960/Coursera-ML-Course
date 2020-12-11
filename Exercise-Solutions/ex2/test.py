@@ -170,7 +170,7 @@ class TestEx2(unittest.TestCase):
         initial_theta = np.zeros(n)
         final_theta, cost = fmin_tnc(initial_theta, costfun=costFunctionReg, gradfun=getGradReg,
                                      args=(mapped, self.y2, lam))
-        print(final_theta, cost)
+        # print(final_theta, cost)
 
     def getDecisionBoundary2(self):
         x1 = self.x2[:, 0]
@@ -192,5 +192,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # unittest.main()
-    main()
+    unittest.main()
+    # main()
